@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Automation</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 30px; }
+        .panel { display: flex; justify-content: space-between; width: 80%; margin-bottom: 30px; }
+        .control-panel, .status-panel { padding: 20px; border: 2px solid #000; width: 45%; }
+        iframe { width: 100%; height: 200px; margin-bottom: 10px; }
+        .status { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <h3>Control Panel</h3>
+            <input type="text" id="videoURL" placeholder="Enter YouTube Video URL" value="https://youtu.be/tJckJyfV2a0?si=ThwwhjoY263qBA_h" />
+            <button onclick="playVideo()">Play Video</button>
+            <button onclick="pauseVideo()">Pause Video</button>
+            <button onclick="subscribeChannel()">Subscribe Channel</button>
+            <div id="videoStatus" class="status"></div>
+        </div>
+
+        <!-- Status Panel for small screens -->
+        <div class="status-panel">
+            <h3>Status Panel</h3>
+            <div id="status1">
+                <p><strong>Gmail ID:</strong> randomuser1@gmail.com</p>
+                <p><strong>Subscribed:</strong> No</p>
+                <p><strong>Video Playing:</strong> No</p>
+            </div>
+            <div id="status2">
+                <p><strong>Gmail ID:</strong> randomuser2@gmail.com</p>
+                <p><strong>Subscribed:</strong> No</p>
+                <p><strong>Video Playing:</strong> No</p>
+            </div>
+            <div id="status3">
+                <p><strong>Gmail ID:</strong> randomuser3@gmail.com</p>
+                <p><strong>Subscribed:</strong> No</p>
+                <p><strong>Video Playing:</strong> No</p>
+            </div>
+            <div id="status4">
+                <p><strong>Gmail ID:</strong> randomuser4@gmail.com</p>
+                <p><strong>Subscribed:</strong> No</p>
+                <p><strong>Video Playing:</strong> No</p>
+            </div>
+            <div id="status5">
+                <p><strong>Gmail ID:</strong> randomuser5@gmail.com</p>
+                <p><strong>Subscribed:</strong> No</p>
+                <p><strong>Video Playing:</strong> No</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Badi screen video control functions
+        let isPlaying = false;
+        let isSubscribed = false;
+
+        function playVideo() {
+            document.getElementById("videoStatus").innerHTML = "Video is now playing.";
+            isPlaying = true;
+            updateStatusPanels();
+        }
+
+        function pauseVideo() {
+            document.getElementById("videoStatus").innerHTML = "Video is paused.";
+            isPlaying = false;
+            updateStatusPanels();
+        }
+
+        function subscribeChannel() {
+            isSubscribed = true;
+            updateStatusPanels();
+        }
+
+        // Update small screens (status panels)
+        function updateStatusPanels() {
+            const statusElements = document.querySelectorAll(".status-panel > div");
+            statusElements.forEach((panel) => {
+                panel.querySelector("p:nth-child(2)").innerHTML = `<strong>Subscribed:</strong> ${isSubscribed ? "Yes" : "No"}`;
+                panel.querySelector("p:nth-child(3)").innerHTML = `<strong>Video Playing:</strong> ${isPlaying ? "Yes" : "No"}`;
+            });
+        }
+    </script>
+</body>
+</html>
